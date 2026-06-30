@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand colors mapping (remaps Tailwind colors for zero JSX file churn) */
+  --color-cyan-500: #7c3aed; /* Brand Primary Purple-600 */
+  --color-cyan-400: #a78bfa; /* Brand Light Purple */
+  --color-cyan-600: #6d28d9; /* Brand Dark Purple */
+  --color-cyan-950: #1e1b4b; /* Brand Deep Purple */
+  
+  --color-purple-600: #06b6d4; /* Brand Secondary Cyan-500 */
+  --color-purple-500: #06b6d4;
+  --color-purple-400: #22d3ee;
+  --color-purple-950: #083344;
+  
+  /* Rest of slate colors mapped to HSL variables */
+  --color-slate-950: hsl(var(--background));
+  --color-slate-900: hsl(var(--card));
+  --color-slate-850: hsl(var(--border));
+  --color-slate-800: hsl(var(--border));
+  --color-slate-100: hsl(var(--foreground));
+  --color-slate-200: hsl(var(--foreground));
+  --color-slate-250: hsl(var(--foreground));
+  --color-slate-350: hsl(var(--foreground));
+  --color-slate-400: hsl(var(--foreground));
+  --color-slate-500: hsl(var(--muted-foreground));
+  --color-slate-600: hsl(var(--muted-foreground));
+  --color-slate-650: hsl(var(--muted-foreground));
+  --color-slate-700: hsl(var(--muted-foreground));
+  --color-slate-750: hsl(var(--muted-foreground));
+}
+
+@layer base {
+  :root {
+    --background: 222.2 47.4% 8.2%; /* #0F172A Slate-900 */
+    --foreground: 210 40% 98%; /* #F8FAFC Slate-50 */
+    --card: 222.2 47.4% 11.2%; /* #1E293B Slate-800 */
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 47.4% 8.2%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 262.1 83.3% 57.8%; /* Purple brand primary */
+    --primary-foreground: 210 40% 98%;
+    --secondary: 188.4 94.5% 42.7%; /* Cyan brand secondary */
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215.4 16.3% 56.9%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%; /* #1E293B border lines */
+    --input: 217.2 32.6% 17.5%;
+    --ring: 262.1 83.3% 57.8%;
+  }
+
+  .light {
+    --background: 0 0% 100%; /* #FFFFFF background */
+    --foreground: 222.2 47.4% 11.2%; /* #0F172A Text */
+    --card: 210 40% 96.1%; /* #F1F5F9 Surface */
+    --card-foreground: 222.2 47.4% 11.2%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+    --primary: 262.1 83.3% 57.8%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%; /* #E2E8F0 border lines */
+    --input: 214.3 31.8% 91.4%;
+    --ring: 262.1 83.3% 57.8%;
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  /* Premium Glassmorphism classes */
+  .glass-card {
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  }
+
+  .light .glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.04);
+  }
+
+  .glass-panel {
+    background: rgba(10, 15, 30, 0.3);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+  }
+
+  .light .glass-panel {
+    background: rgba(248, 250, 252, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(15, 23, 42, 0.05);
+  }
+  
+  .glass-input {
+    background: rgba(10, 15, 30, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: #fff;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .glass-input:focus {
+    border-color: rgba(34, 211, 238, 0.5);
+    box-shadow: 0 0 12px rgba(34, 211, 238, 0.15);
+  }
+
+  .light .glass-input {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    color: #0f232a;
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Hide scrollbars for sliders */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

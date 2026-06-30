@@ -1,0 +1,17 @@
+{
+  "short_name": "CipherNet",
+  "name": "CipherNet: Secure Real-Time Social Platform",
+  "description": "Connect Securely. Communicate Freely. Client-side end-to-end encrypted social communication.",
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#0F172A",
+  "theme_color": "#7C3AED",
+  "display": "standalone",
+  "orientation": "portrait"
+}
