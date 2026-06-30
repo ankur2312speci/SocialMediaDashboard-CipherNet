@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 const API_URL = typeof window !== "undefined" && window.location.hostname !== "localhost"
-  ? "https://ciphernet-api.onrender.com/api"
+  ? "https://socialmediadashboard-ciphernet.onrender.com/api"
   : "http://localhost:5000/api";
 
 export const useAuthStore = create((set, get) => ({

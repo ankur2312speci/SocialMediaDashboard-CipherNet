@@ -6,7 +6,7 @@ import { useFeedStore } from "../store/useFeedStore";
 import { useE2EE } from "./useE2EE";
 
 const SOCKET_URL = typeof window !== "undefined" && window.location.hostname !== "localhost"
-  ? "https://ciphernet-api.onrender.com"
+  ? "https://socialmediadashboard-ciphernet.onrender.com"
   : "http://localhost:5000";
 
 let socketInstance = null;

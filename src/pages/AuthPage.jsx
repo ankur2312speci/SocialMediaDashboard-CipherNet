@@ -21,14 +21,14 @@ function AuthPage() {
   const handleGoogleSignIn = () => {
     const backendUrl = window.location.hostname === "localhost"
       ? "http://localhost:5000"
-      : "https://ciphernet-api.onrender.com";
+      : "https://socialmediadashboard-ciphernet.onrender.com";
     window.location.href = `${backendUrl}/api/auth/google`;
   };
 
   const handleGitHubSignIn = () => {
     const backendUrl = window.location.hostname === "localhost"
       ? "http://localhost:5000"
-      : "https://ciphernet-api.onrender.com";
+      : "https://socialmediadashboard-ciphernet.onrender.com";
     window.location.href = `${backendUrl}/api/auth/github`;
   };
 

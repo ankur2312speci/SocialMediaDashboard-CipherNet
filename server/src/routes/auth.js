@@ -243,7 +243,7 @@ router.get("/google", (req, res) => {
   // Auto-resolve callback URI based on runtime environment
   const redirectUri = host.includes("localhost")
     ? "http://localhost:5000/api/auth/google/callback"
-    : "https://ciphernet-api.onrender.com/api/auth/google/callback";
+    : "https://socialmediadashboard-ciphernet.onrender.com/api/auth/google/callback";
 
   const googleUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.GOOGLE_CLIENT_ID}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=code&scope=profile%20email`;
   
@@ -254,17 +254,17 @@ router.get("/google", (req, res) => {
 // 2. Google OAuth Callback Handler
 router.get("/google/callback", async (req, res) => {
   const { code } = req.query;
-  const clientUrl = process.env.CLIENT_URL || "http://localhost:5173";
+  const host = req.get("host");
+  const clientUrl = process.env.CLIENT_URL || (host.includes("localhost") ? "http://localhost:5173" : "https://ciphernet-indol.vercel.app");
 
   if (!code) {
     return res.redirect(`${clientUrl}/auth?error=google_auth_failed`);
   }
 
   try {
-    const host = req.get("host");
     const redirectUri = host.includes("localhost")
       ? "http://localhost:5000/api/auth/google/callback"
-      : "https://ciphernet-api.onrender.com/api/auth/google/callback";
+      : "https://socialmediadashboard-ciphernet.onrender.com/api/auth/google/callback";
 
     // Exchange auth code for google access/id token
     const tokenResponse = await oauthHttpsPost("https://oauth2.googleapis.com/token", {
@@ -343,7 +343,7 @@ router.get("/github", (req, res) => {
   const host = req.get("host");
   const redirectUri = host.includes("localhost")
     ? "http://localhost:5000/api/auth/github/callback"
-    : "https://ciphernet-api.onrender.com/api/auth/github/callback";
+    : "https://socialmediadashboard-ciphernet.onrender.com/api/auth/github/callback";
 
   const githubUrl = `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=user:email`;
   
@@ -354,17 +354,17 @@ router.get("/github", (req, res) => {
 // 2. GitHub OAuth Callback Handler
 router.get("/github/callback", async (req, res) => {
   const { code } = req.query;
-  const clientUrl = process.env.CLIENT_URL || "http://localhost:5173";
+  const host = req.get("host");
+  const clientUrl = process.env.CLIENT_URL || (host.includes("localhost") ? "http://localhost:5173" : "https://ciphernet-indol.vercel.app");
 
   if (!code) {
     return res.redirect(`${clientUrl}/auth?error=github_auth_failed`);
   }
 
   try {
-    const host = req.get("host");
     const redirectUri = host.includes("localhost")
       ? "http://localhost:5000/api/auth/github/callback"
-      : "https://ciphernet-api.onrender.com/api/auth/github/callback";
+      : "https://socialmediadashboard-ciphernet.onrender.com/api/auth/github/callback";
 
     // Exchange auth code for access token
     const tokenResponse = await oauthHttpsPost("https://github.com/login/oauth/access_token", {

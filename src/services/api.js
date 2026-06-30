@@ -1,7 +1,7 @@
 import { useAuthStore } from "../store/useAuthStore";
 
 const BASE_URL = typeof window !== "undefined" && window.location.hostname !== "localhost"
-  ? "https://ciphernet-api.onrender.com/api"
+  ? "https://socialmediadashboard-ciphernet.onrender.com/api"
   : "http://localhost:5000/api";
 
 // Helper for authorized headers
