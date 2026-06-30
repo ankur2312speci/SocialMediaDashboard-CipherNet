@@ -209,7 +209,7 @@ router.post("/refresh-token", (req, res) => {
     return res.status(401).json({ error: "Refresh token required" });
   }
 
-  jwt.verify(refreshToken, REFRESH_SECRET, async (err, payload) => {
+  jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET || "default_refresh_secret", async (err, payload) => {
     if (err) {
       return res.status(403).json({ error: "Invalid or expired refresh token" });
     }
