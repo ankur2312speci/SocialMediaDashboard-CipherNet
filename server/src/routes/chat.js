@@ -131,7 +131,7 @@ router.get("/group-messages/:groupId", authenticateJWT, async (req, res) => {
     // Check if user is member
     const group = await Group.findById(groupId);
     if (!group) return res.status(404).json({ error: "Group not found" });
-    if (!group.members.includes(req.user.id)) {
+    if (!group.members.some(id => id.toString() === req.user.id)) {
       return res.status(403).json({ error: "You are not a member of this group" });
     }
 

@@ -171,7 +171,7 @@ router.post("/:id/like", authenticateJWT, async (req, res) => {
     const post = await Post.findById(req.params.id);
     if (!post) return res.status(404).json({ error: "Post not found" });
 
-    const isLiked = post.likes.includes(req.user.id);
+    const isLiked = post.likes.some(id => id.toString() === req.user.id);
     if (isLiked) {
       post.likes = post.likes.filter(id => id.toString() !== req.user.id);
     } else {

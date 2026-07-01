@@ -119,7 +119,7 @@ router.post("/follow/:id", authenticateJWT, async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    if (currentUser.following.includes(targetUserId)) {
+    if (currentUser.following.some(id => id.toString() === targetUserId)) {
       return res.status(400).json({ error: "Already following this user" });
     }
 
@@ -149,7 +149,7 @@ router.post("/unfollow/:id", authenticateJWT, async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    if (!currentUser.following.includes(targetUserId)) {
+    if (!currentUser.following.some(id => id.toString() === targetUserId)) {
       return res.status(400).json({ error: "Not following this user" });
     }
 
@@ -197,7 +197,7 @@ router.post("/bookmark/:postId", authenticateJWT, async (req, res) => {
     const user = await User.findById(req.user.id);
     if (!user) return res.status(404).json({ error: "User not found" });
 
-    const isBookmarked = user.bookmarks.includes(req.params.postId);
+    const isBookmarked = user.bookmarks.some(id => id.toString() === req.params.postId);
     if (isBookmarked) {
       user.bookmarks = user.bookmarks.filter(id => id.toString() !== req.params.postId);
     } else {
